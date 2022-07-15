@@ -6,6 +6,7 @@ import { listWorkoutDetails } from "../../action/workoutAction";
 import Loader from "../Layout/Loader";
 import Rating from "../Layout/Rating";
 import Charts from "./Charts";
+import LineCharts from "./LineCharts";
 
 const WorkoutDescScreen = () => {
   const [start, setStartTime] = useState();
@@ -108,27 +109,35 @@ const WorkoutDescScreen = () => {
               </div>
             </div>
             {!userInfo.isAdmin && (
-              <div className="grid-2-3">
-                <div className="w-chart">
-                  <Charts avgCals={avgCals} calories={calories} />
-                </div>
-                <div className="card-desc w-timer">
-                  <div className="timer-btn">
-                    <button className="btn btn-success" onClick={startTime}>
-                      Start
-                    </button>
-                    <button className="btn btn-danger" onClick={endTime}>
-                      End
-                    </button>
-                    <button className="btn btn-danger" onClick={resetTime}>
-                      Reset
-                    </button>
+              <div>
+                <div className="grid-2-3">
+                  <div className="w-chart">
+                    <Charts avgCals={avgCals} calories={calories} />
                   </div>
-                  <div className="timer-output grid-center">
-                    {/* {console.log(time)} */}
-                    <h1>{time}</h1>
+                  <div className="card-desc w-timer">
+                    <div className="timer-btn">
+                      <button className="btn btn-success" onClick={startTime}>
+                        Start
+                      </button>
+                      <button className="btn btn-danger" onClick={endTime}>
+                        End
+                      </button>
+                      <button className="btn btn-danger" onClick={resetTime}>
+                        Reset
+                      </button>
+                    </div>
+
+                    <div className="heading bg-gray br-round my-1 ">
+                      <h3>Workout Time</h3>
+                    </div>
+                    <p className="text-center my-1">{time}</p>
+                    <div className="heading bg-gray br-round my-1 ">
+                      <h3>Calories Burnt per Minute</h3>
+                    </div>
+                    <p className="text-center my-1">{calories}</p>
                   </div>
                 </div>
+                <LineCharts />
               </div>
             )}
           </div>
